@@ -15,6 +15,7 @@ class Identyfires(models.Model):
     type = models.IntegerField()
     identifier = models.IntegerField(validators=[ISBN10Validator,ISBN13Validator])
 
+
 class BookInfo(models.Model):
     title = models.TextField()
     authors = models.ForeignKey(Authors,on_delete=models.CASCADE)
