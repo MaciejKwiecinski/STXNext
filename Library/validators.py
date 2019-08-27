@@ -11,3 +11,11 @@ def MinYearValidator(value):
 def MinPagesValidator(value):
     if value < 1 :
         raise ValidationError("Too short")
+
+def ISBN13Validator(type,value):
+    if len(value) != 13 and type == 1:
+        raise ValidationError("Wrong ISBN-13")
+
+def ISBN10Validator(type,value):
+    if len(value) != 10 and type == 0:
+        raise ValidationError("Wrong ISBN-10")
