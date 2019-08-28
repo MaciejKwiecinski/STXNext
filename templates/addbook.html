@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <h1>Add book:</h1>
+    </head>
+    <body>
+        <form method="post" name="booksearch">
+            {% csrf_token %}
+            <p>Title: {{ bookform.title }}</p>
+            {{ authorform.as_p }}
+            <p>Published date: {{ bookform.publishedDate }}</p>
+            <p>Nuber of page: {{ bookform.pageCount }}</p>
+            <p>Image link: {{ bookform.imageLinks }}</p>
+            <p>Language: {{ bookform.language }}</p>
+            {{ isbnform.as_p }}
+            <input type = submit value="Add">
+        </form>
+    </body>
+</html>

@@ -3,17 +3,15 @@
         <h1>Search:</h1>
     </head>
     <body>
-        <form method="post" name="booklist">
-            {%csrf_token%}
-            <p>{{ form1.title }}</p>
-            <p>{{ form1.authors }}</p>
-            <p>{{ form1.language }}</p>
-            <p>{{ form1.publishedDate }}</p>
+        <form method="post" name="booksearch">
+            {% csrf_token %}
+
             <input type = submit value="Search">
         </form>
 
         <h1>Book List:</h1>
             {% for book in books%}
+                <p>{{ book.pk }}</p>
             <h3>{{book.title}}</h3>
             <p>Author: {{ book.authors.name }}</p>
             <p>Published year: {{ book.publishedDate }}</p>
