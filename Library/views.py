@@ -28,6 +28,7 @@ class AddBookView(View):
         authorform = form.AuthorsForm
         return render(request,'addbook.html',{'bookform':bookform,'isbnform':isbnform,'authorform':authorform})
 
+
     def post(self,request):
         book = form.BookInfoForm(request.POST)
         isbn = form.IdentyfiresForm(request.POST)
