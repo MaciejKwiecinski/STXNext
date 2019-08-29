@@ -1,5 +1,5 @@
 from django.db import models
-from .validators import MinYearValidator, MaxYearValidator,MinPagesValidator
+from .validators import MinYearValidator, MaxYearValidator,MinPagesValidator,ISBNValidator
 # Create your models here.
 ISBN = [(0,'ISBN-10'),
         (1,'ISBN-13')]
@@ -12,7 +12,7 @@ class Authors(models.Model):
 
 class Identyfires(models.Model):
     type = models.IntegerField(choices=ISBN)
-    identifier = models.IntegerField()
+    identifier = models.BigIntegerField(validators=[ISBNValidator])
 
 
 class BookInfo(models.Model):

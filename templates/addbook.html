@@ -8,10 +8,10 @@
             <p>Title: {{ bookform.title }}</p>
             {{ authorform.as_p }}
             <p>Published date: {{ bookform.publishedDate }}</p>
+            {{ isbnform.as_p }}
             <p>Nuber of page: {{ bookform.pageCount }}</p>
             <p>Image link: {{ bookform.imageLinks }}</p>
             <p>Language: {{ bookform.language }}</p>
-            {{ isbnform.as_p }}
             <input type = submit value="Add">
         </form>
     </body>
