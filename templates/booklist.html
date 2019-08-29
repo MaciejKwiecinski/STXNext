@@ -5,13 +5,12 @@
     <body>
         <form method="post" name="booksearch">
             {% csrf_token %}
-
+            {{ form.as_p }}
             <input type = submit value="Search">
         </form>
 
         <h1>Book List:</h1>
             {% for book in books%}
-                <p>{{ book.pk }}</p>
             <h3>{{book.title}}</h3>
             <p>Author: {{ book.authors.name }}</p>
             <p>Published year: {{ book.publishedDate }}</p>
