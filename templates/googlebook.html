@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <h1>Google Books:</h1>
+    </head>
+    <body>
+        <form method="post" name="google books">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type = submit value="Add">
+        </form>
+    </body>
+</html>

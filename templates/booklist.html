@@ -3,25 +3,21 @@
         <h1>Search:</h1>
     </head>
     <body>
+        <h1>{{ x }}</h1>
         <form method="post" name="booksearch">
             {% csrf_token %}
             {{ form.as_p }}
             <input type = submit value="Search">
         </form>
-
-        <h1>Book List:</h1>
-            {% for book in books%}
-            <h3>{{book.title}}</h3>
-            <p>Author: {{ book.authors.name }}</p>
-            <p>Published year: {{ book.publishedDate }}</p>
-            {% if book.industryIdentifiers.type == 1 %}
-                <p>ISBN number: ISBN-13 {{ book.industryIdentifiers.identifier }}</p>
-            {% else %}
-                <p>ISBN number: ISBN-10 {{ book.industryIdentifiers.identifier }}</p>
-            {% endif %}
-            <p>Number of pages: {{ book.pageCount }}</p>
-            <p>Book image link: {{ book.imageLinks }}</p>
-            <p>Language: {{ book.language }}</p>
-            {% endfor %}
+{#        <h1>Book List:</h1>#}
+{#            {% for key, values in books.items%}#}
+{#            <h3>{{key.title}}</h3>#}
+{#            <p>{{ key.publishedDate }}</p>#}
+{#            <p>{{ key.type }}</p>#}
+{#            <p>{{ key.identyfire }}</p>#}
+{#            <p>{{ key.pageCount }}</p>#}
+{#            <p>{{ key.imageLinks }}</p>#}
+{#            <p>{{ key.language }}</p>#}
+{#            {% endfor %}#}
     </body>
 </html>
