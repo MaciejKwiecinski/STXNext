@@ -1,1 +1,1 @@
-web: STXNext.wsgi
+web: gunicorn STXNext.wsgi
