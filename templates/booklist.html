@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <h1>Search:</h1>
+        <a href="addbook/">Add Book to db by form </a>
+        <p></p>
+        <a href="googlebook/">Add Book to db from google book api </a>
+    </head>
+    <body>
+        <h1>{{ x }}</h1>
+        <form method="post" name="booksearch">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type = submit value="Search">
+        </form>
+        <h1>Book List:</h1>
+            {% for book in books%}
+            <h3>{{book.title}}</h3>
+            <p>{{ book.publishedDate }}</p>
+            <p>{{ book.identyfires_set }}</p>
+            <p>{{ book.authors_set }}</p>
+            <p>{{ book.pageCount }}</p>
+            <p>{{ book.imageLinks }}</p>
+            <p>{{ book.language }}</p>
+            {% endfor %}
+    </body>
+</html>
