@@ -36,7 +36,6 @@ class AddBookView(View):
         return render(request, 'addbook.html', {'bookform': bookform, 'isbnform': isbnform, 'authorform': authorform})
 
     def post(self, request):
-        books = form.BookInfoForm(request.POST)
         isbn = form.IdentyfiresForm(request.POST)
         author = form.AuthorsForm(request.POST)
         msg = 'Problem with data'
