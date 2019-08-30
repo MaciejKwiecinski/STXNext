@@ -22,8 +22,6 @@ class SearchForm(forms.Form):
     title = forms.CharField(label= 'Title',required=None)
     author = forms.CharField(label='Author',required=None)
     language = forms.CharField(label='Language',required=None)
-    dates = forms.CharField(label='Start',required=None,empty_value=0)
-    datef = forms.CharField(label='Finish',required=None, empty_value=2019)
 
 class GoogleBookForm(forms.Form):
     search_terms = forms.CharField(label= 'Search item', required=True)

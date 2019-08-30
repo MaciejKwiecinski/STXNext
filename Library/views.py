@@ -11,14 +11,11 @@ api_key = 'AIzaSyAeWfJpdw7Jp6v9yD33EKB31Z3FEkTjg1E'
 
 class BookListView(View):
     def get(self, request):
-        dict={}
         books = BookInfo.objects.all()
-        authors = Authors.objects.all()
-        isbn = Identyfires.objects.all()
-        for i in books:
-            dict[i]={(authors.filter(book_id=i.id)),(isbn.filter(book_id=i.id))}
+        authors = Authors.objects.all().prefetch_related('book__identyfires_set')
+        isbn = Identyfires.objects.all().prefetch_related('book__authors_set')
         searchform = form.SearchForm
-        return render(request, 'booklist.html', {'books': books, 'form': searchform})
+        return render(request, 'booklist.html', {'books': books,'author':authors , 'isbn':isbn , 'form': searchform})
 
     def post(self, request):
         searchform = form.SearchForm(request.POST)
@@ -26,10 +23,8 @@ class BookListView(View):
             title = searchform.cleaned_data['title']
             author = searchform.cleaned_data['author']
             language = searchform.cleaned_data['language']
-            start = searchform.cleaned_data['dates']
-            finish = searchform.cleaned_data['datef']
             books = BookInfo.objects.filter(title__contains=title, authors__name__contains=author,
-                                            language__contains=language, publishedDate__range=[start, finish])
+                                            language__contains=language )
         return render(request, 'booklist.html', {'books': books, 'form': searchform})
 
 

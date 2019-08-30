@@ -9,15 +9,15 @@
             {{ form.as_p }}
             <input type = submit value="Search">
         </form>
-{#        <h1>Book List:</h1>#}
-{#            {% for key, values in books.items%}#}
-{#            <h3>{{key.title}}</h3>#}
-{#            <p>{{ key.publishedDate }}</p>#}
-{#            <p>{{ key.type }}</p>#}
-{#            <p>{{ key.identyfire }}</p>#}
-{#            <p>{{ key.pageCount }}</p>#}
-{#            <p>{{ key.imageLinks }}</p>#}
-{#            <p>{{ key.language }}</p>#}
-{#            {% endfor %}#}
+        <h1>Book List:</h1>
+            {% for book in books%}
+            <h3>{{book.title}}</h3>
+            <p>{{ book.publishedDate }}</p>
+            <p>{{ book.identyfires_set }}</p>
+            <p>{{ book.authors_set }}</p>
+            <p>{{ book.pageCount }}</p>
+            <p>{{ book.imageLinks }}</p>
+            <p>{{ book.language }}</p>
+            {% endfor %}
     </body>
 </html>
