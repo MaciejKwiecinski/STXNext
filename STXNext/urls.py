@@ -15,10 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Library.views import BookListView,AddBookView
+from rest_framework import routers
+from Library.views import BookListView,AddBookView,AddGoogleBookView
+from Library.api.views import BooksApiView,AuthorApiView,IdentyfiresApiView,DocsView
+
+router = routers.DefaultRouter(trailing_slash=False)
 
 urlpatterns = [
      path('admin/', admin.site.urls),
      path('books/', BookListView.as_view()),
-     path('addbook/',AddBookView.as_view())
+     path('addbook/',AddBookView.as_view()),
+     path('googlebook/', AddGoogleBookView.as_view()),
+     path('api/ ',BooksApiView.as_view()),
+     path('apiauthor/',AuthorApiView.as_view()),
+     path('apiisbn/',IdentyfiresApiView.as_view()),
+     path('',DocsView.as_view()),
 ]
+urlpatterns += router.urls
