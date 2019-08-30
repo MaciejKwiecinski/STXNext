@@ -12,6 +12,7 @@ class IdentyfiresSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class AuthorsSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Authors
         fields = '__all__'
