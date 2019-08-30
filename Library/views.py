@@ -8,6 +8,8 @@ from json import load
 
 api_key = 'AIzaSyAeWfJpdw7Jp6v9yD33EKB31Z3FEkTjg1E'
 
+def main(request):
+    return render(request,'main.html')
 
 class BookListView(View):
     def get(self, request):
@@ -59,7 +61,6 @@ class AddGoogleBookView(View):
         googleform = form.GoogleBookForm(request.POST)
         msg = 'Done'
         if googleform.is_valid():
-            try:
                 search_term = googleform.cleaned_data['search_terms']
                 url = 'https://www.googleapis.com/books/v1/volumes?q=' + search_term + '&key=' + api_key
                 json_obj = urllib.request.urlopen(url)
@@ -76,9 +77,7 @@ class AddGoogleBookView(View):
                         author = j
                         Authors.objects.create(book=book, name=author)
                     for j in i['volumeInfo']['industryIdentifiers']:
-                        type = j['type']
+                        typ = j['type']
                         num = j['identifier']
-                        Identyfires.objects.create(type=type, identifier=num, book=book)
-            except:
-                msg = 'Problem with data in API'
+                        Identyfires.objects.create(type=typ, identifier=num, book=book)
         return HttpResponse(msg)
