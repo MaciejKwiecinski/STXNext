@@ -22,14 +22,13 @@ from Library.api.views import BooksApiView,AuthorApiView,IdentyfiresApiView,Docs
 router = routers.DefaultRouter(trailing_slash=True)
 
 urlpatterns = [
-     path('admin/', admin.site.urls),
-     path('books/', BookListView.as_view()),
-     path('books/addbook/',AddBookView.as_view()),
-     path('books/googlebook/', AddGoogleBookView.as_view()),
-     path('api/', DocsView.as_view()),
-     path('api/books/',BooksApiView.as_view()),
-     path('api/author/',AuthorApiView.as_view()),
-     path('api/isbn/',IdentyfiresApiView.as_view()),
-     path('',main),
+     path('books/', BookListView.as_view(),name = 'booklist'),
+     path('books/addbook/',AddBookView.as_view(),name = 'addbook'),
+     path('books/googlebook/', AddGoogleBookView.as_view(),name = 'googlebook'),
+     path('api/', DocsView.as_view(),name = 'apilist'),
+     path('api/books/',BooksApiView.as_view(), name = 'apibooklist'),
+     path('api/author/',AuthorApiView.as_view(), name = 'apiauthorlist'),
+     path('api/isbn/',IdentyfiresApiView.as_view(), name = 'apiisbnlist'),
+     path('',main, name = 'main'),
 ]
 urlpatterns += router.urls

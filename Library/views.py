@@ -38,6 +38,7 @@ class AddBookView(View):
         return render(request, 'addbook.html', {'bookform': bookform, 'isbnform': isbnform, 'authorform': authorform})
 
     def post(self, request):
+        books = form.BookInfoForm(request.POST)
         isbn = form.IdentyfiresForm(request.POST)
         author = form.AuthorsForm(request.POST)
         msg = 'Problem with data'
@@ -48,7 +49,7 @@ class AddBookView(View):
             isbn.book = b
             author.book = b
             msg = 'Done'
-        return HttpResponse(msg)
+        return render(request,'message.html',{'msg':msg})
 
 
 class AddGoogleBookView(View):
@@ -79,4 +80,4 @@ class AddGoogleBookView(View):
                         typ = j['type']
                         num = j['identifier']
                         Identyfires.objects.create(type=typ, identifier=num, book=book)
-        return HttpResponse(msg)
+        return render(request,'message.html',{'msg':msg})
