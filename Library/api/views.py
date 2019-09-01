@@ -9,7 +9,7 @@ from rest_framework import filters
 class BooksApiView(generics.ListAPIView):
     queryset = BookInfo.objects.all()
     serializer_class = BookInfoSerializer
-    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['title', 'language', 'publishedDate']
     ordering_fields = ['title', 'language', 'publishedDate']
 
@@ -23,7 +23,8 @@ class AuthorApiView(generics.ListAPIView):
 class IdentyfiresApiView(generics.ListAPIView):
     queryset = Identyfires.objects.all()
     serializer_class = IdentyfiresSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    ordering_fields = ['identifier','type']
 
 class DocsView(APIView):
     def get(self,request):

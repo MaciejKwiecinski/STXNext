@@ -66,18 +66,21 @@ class AddGoogleBookView(View):
                 json_obj = urllib.request.urlopen(url)
                 data = load(json_obj)
                 for i in data['items']:
-                    title = i['volumeInfo']['title']
-                    publishedDate = i['volumeInfo']['publishedDate']
-                    pageCount = i['volumeInfo']['pageCount']
-                    imageLinks = i['volumeInfo']['imageLinks']
-                    language = i['volumeInfo']['language']
-                    book = BookInfo.objects.create(title=title, publishedDate=publishedDate, pageCount=pageCount,
-                                                   imageLinks=imageLinks, language=language)
-                    for j in i['volumeInfo']['authors']:
-                        author = j
-                        Authors.objects.create(book=book, name=author)
-                    for j in i['volumeInfo']['industryIdentifiers']:
-                        typ = j['type']
-                        num = j['identifier']
-                        Identyfires.objects.create(type=typ, identifier=num, book=book)
+                    try:
+                        title = i['volumeInfo']['title']
+                        publishedDate = i['volumeInfo']['publishedDate']
+                        pageCount = i['volumeInfo']['pageCount']
+                        imageLinks = i['volumeInfo']['imageLinks']
+                        language = i['volumeInfo']['language']
+                        book = BookInfo.objects.create(title=title, publishedDate=publishedDate, pageCount=pageCount,
+                                                       imageLinks=imageLinks, language=language)
+                        for j in i['volumeInfo']['authors']:
+                            author = j
+                            Authors.objects.create(book=book, name=author)
+                        for j in i['volumeInfo']['industryIdentifiers']:
+                            typ = j['type']
+                            num = j['identifier']
+                            Identyfires.objects.create(type=typ, identifier=num, book=book)
+                    except Exception:
+                        msg = 'GoogleAPI error'
         return render(request,'message.html',{'msg':msg})
