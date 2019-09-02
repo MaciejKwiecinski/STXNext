@@ -26,9 +26,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['stxrecrutation.herokuapp.com']
 
-SECRET_KEY = '-=^u3=dcf2x-06&rdcw-+qn7m4e5r5m9a48knat++ja4%r-%e0'
-
-#from Library.localsettings import SECRET_KEY
+from Library.localsettings import SECRET_KEY
 
 # Application definition
 
@@ -78,15 +76,10 @@ WSGI_APPLICATION = 'STXNext.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'NAME': 'Library',
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER': 'postgres',
-        'PASSWORD': 'coderslab',
-        'HOST': 'localhost'
-    }
-}
+try:
+    from Library.localsettings import DATABASES
+except ImportError:
+    pass
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
