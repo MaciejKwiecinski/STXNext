@@ -6,7 +6,7 @@ import Library.forms as form
 import urllib.request
 from json import load
 
-api_key = 'AIzaSyAeWfJpdw7Jp6v9yD33EKB31Z3FEkTjg1E'
+api_key = 'apikey' '''private'''
 
 def main(request):
     return render(request,'main.html')
